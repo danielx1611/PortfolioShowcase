@@ -1,0 +1,17 @@
+PatientArrives 0934 Jill 2
+PatientArrives 0944 Bill 3
+PatientArrives 1003 Frank 4
+PatientArrives 1005 Paul 5
+PatientArrives 1010 George 3
+PatientDepartsAfterNurseTreatment 1015 Paul
+DoctorArrives 1030 Nelson
+PatientArrives 1103 Carl 2
+PatientArrives 1104 Jane 3
+PatientArrives 1105 Nancy 1
+PatientArrives 1107 Mark 5
+PatientArrives 1111 Horace 4
+PatientDepartsAfterNurseTreatment 1017 Mark
+PatientArrives 1118 Vonn 2
+UpdatePatientESI 1119 Vonn 1
+PatientArrives 1126 Casey 5
+PatientDepartsAfterNurseTreatment 1136 Casey

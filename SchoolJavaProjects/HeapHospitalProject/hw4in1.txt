@@ -1,0 +1,6 @@
+PatientArrives 0934 Jill 3
+PatientArrives 0944 Bill 3
+PatientArrives 1003 Frank 4
+PatientArrives 1005 Paul 5
+PatientArrives 1010 George 3
+PatientArrives 1103 Carl 4
