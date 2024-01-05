@@ -11,8 +11,8 @@ around a 4x4 board of random letters to form a word, with longer words giving a 
 The competition for this project on a class sized scale was to produce the highest
 scores possible at the quickest speeds. 
 
-The "score" for the project was determined based on the points earned on each Boggle board
-and the time required to get those points, as well as the memory usage of the program. Therefore, only 
+The "score" for the project was determined based on the points earned on each Boggle board,
+the time required to get those points, and the memory usage of the program. Therefore, only 
 highly efficient and high scoring programs would receive good scores.
 
 The team successfully produced the most efficient and highest scoring code of 
