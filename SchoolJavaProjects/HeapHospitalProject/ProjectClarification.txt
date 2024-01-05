@@ -1,0 +1,15 @@
+This code was developed to solve a problem presented in HW4 of my Data Structures and Algorithms class:
+
+The goal is to use a heap to manage the patients in a hospital.
+Continually determine which patients should be operated on
+first by doctors or treated by nurses depending on the severity
+of their injuries and the time at which the patient arrived.
+
+ESI 5 patients can be treated by nurses if all of the doctors are busy.
+All ESI 1-4 patients must be treated by a doctor, with ESI 1 patients
+being the highest priority with the most severe injuries, and ESI 5
+patients being the lowest priority with the least severe injuries.
+
+HW4Extra attempts to solve a harder problem, where a patient can change
+ESI severities if their condition worsens or improves. The challenge
+had to be done in O(log n) time to maintain efficiency.
