@@ -1,0 +1,30 @@
+This code was developed to solve a problem presented in HW6 of my Data Structures and Algorithms class:
+
+Data is read from an input file depicting a Pacman
+game, and the code prompts a user to move Pacman.
+After Pacman moves, the grid is reprinted and the
+Ghosts' pathways to get to Pacman are printed.
+
+In the sample files provided, borders/obstacles are represented with '#' symbols.
+Pacman is represented with 'P', the 4 ghosts are represented with the letters 'G' 'H' 'O' and 'S'.
+Dots for Pacman to eat are represented with a '.'.
+If a Ghost is standing over a dot, it will be capitalized. If it is standing over an empty space,
+it will be lowercase (i.e. on dot = 'G', on empty space = 'g').
+
+Pacman is moved by a simple player input on the command line, asking if the player would like to move
+up, down, left, or right, with restrictions if an action is not possible to make.
+
+The ghosts, in the basic HW6.java and HW6Extra1.java files use a BreadthFirstSearch algorithm to find
+the quickest path to Pacman.
+
+The player loses if Pacman is trapped by ghosts and cannot move, or if a ghost eats Pacman.
+The player wins if Pacman eats all of the dots on the board.
+
+To clarify the difference in the four HW6 java files:
+- HW6.java - basic description provided above, show Pacman moving, and display the paths the ghosts
+want to take in order to reach Pacman using BFS.
+- HW6Extra1.java - play HW6.java until win/lose state
+- HW6Extra2.java - Same concept as HW6.java, but instead of using BFS to find the shortest path, use a weighted
+system favoring paths that contain dots (as Pacman wants to go to the dots, so cut him off before he gets there).
+Run Dijkstra's algorithm for weighted graphs to find the best path to get to Pacman.
+- HW6Extra3.java - play HW6Extra2.java until win/lose state
