@@ -6,7 +6,9 @@ can be read in text files labeled "ProjectClarification.txt" in each of the proj
 
 To see the unity projects running in real time, please visit their respective pages:
 https://rocketblaster05.itch.io/tiny-tactics
+
 https://rocketblaster05.itch.io/return-of-the-demon-lord
+
 https://rocketblaster05.itch.io/fight-to-survive
 
 I have provided sample text input files (if applicable) for my school Java projects to give more context
