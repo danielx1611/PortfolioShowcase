@@ -5,6 +5,7 @@ to show off my programming skills and learning capabilities. Further description
 can be read in text files labeled "ProjectClarification.txt" in each of the project folders.
 
 To see the unity projects running in real time, please visit their respective pages:
+
 https://rocketblaster05.itch.io/tiny-tactics
 
 https://rocketblaster05.itch.io/return-of-the-demon-lord
