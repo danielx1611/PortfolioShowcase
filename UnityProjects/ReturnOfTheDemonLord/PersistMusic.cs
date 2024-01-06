@@ -8,6 +8,7 @@ public class PersistMusic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Get music player objects and destroy any duplicates
         PersistMusic[] objs = GameObject.FindObjectsOfType<PersistMusic>();
         if (objs.Length > 1)
         {
@@ -20,17 +21,14 @@ public class PersistMusic : MonoBehaviour
                 Destroy(objs[0]);
             }
         }
+
+        // Dont destroy this object on scene load to make music persist between levels
         DontDestroyOnLoad(this.gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void StopMusic()
     {
+        // Destroy music player
         Destroy(this.gameObject);
     }
 }
