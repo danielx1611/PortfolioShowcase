@@ -1,0 +1,26 @@
+This code was developed in roughly three days for a game jam project held by Noa and Liam Calice for their GameDevRocket course.
+Game jam theme: Unexpected Twist
+
+------IMPORTANT------
+
+This project relies on art and sounds not produced by the code author.
+
+Art sources can be found at the following unity asset store links:
+https://assetstore.unity.com/packages/2d/characters/hero-knight-pixel-art-165188
+https://assetstore.unity.com/packages/2d/characters/bandits-pixel-art-104130
+https://assetstore.unity.com/packages/2d/environments/pixel-art-top-down-basic-187605
+https://assetstore.unity.com/packages/2d/characters/100-fantasy-characters-mega-pack-222143
+
+Sound sources were found at freesound.org
+
+------IMPORTANT------
+
+The goal is for the player to kill any enemies in their path as the adventurer attempts to stop the Demon Lord from
+wreaking havoc on the adventurer's kingdom. The player comes across several strange altars that teleport them into
+more enemies and closer to the location of the Demon Lord.
+
+The player can move, block, attack, and dodge roll to move around or fight any enemies they come across. The player
+can interact with altars and chests, after being prompted to do so by the game.
+
+Each scene transition includes some details about the origin of the Demon Lord and the upcoming set of enemies the
+player is going to face, leading up to the Demon Lord's big reveal.
