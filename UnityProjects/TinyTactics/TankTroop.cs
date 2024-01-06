@@ -93,7 +93,7 @@ public class TankTroop : Troop
         base.RunAIDecision();
     }
 
-    
+    // AI Sequence commented out, same as the base AI Sequence, left here for ease of modification
 
     /*IEnumerator runAISequence()
     {
