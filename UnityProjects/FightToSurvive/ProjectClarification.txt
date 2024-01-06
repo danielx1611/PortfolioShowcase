@@ -1,0 +1,31 @@
+This code was from a project made following the GameDevRocket game development course by Noa and Liam Calice (BlackThornProd on YouTube)
+
+------IMPORTANT------
+
+This project relies on an old version of the Unity Asset store product called The FPS Engine, found here:
+https://assetstore.unity.com/packages/templates/systems/fps-engine-218594
+
+The old version was provided as an asset in the GameDevRocket game development course.
+
+------IMPORTANT------
+
+The goal of the game is to survive multiple waves of an increasing number of zombies. Over time, more difficult zombies
+spawn, and the player must kill them as quickly as possible to get gold and a high amount of points.
+
+The player has a limited amount of ammo and health, and must travel around the map to find various buy stations littered
+about, which grant the player to buy more ammo or health by spending the gold they earned killing zombies.
+
+There are also 3 gun shops, which cost a large sum of gold, that the player can invest in to have multiple weapons to
+fight against zombies with. More weapons means more ammo, and in turn, more ways to kill the zombies.
+
+Main Improvements after following along with the course:
+
+- Improved main menu screen with more options, option to choose between the game and a practice range to test out weapons
+- Improved settings screen, adding options for mouse sensitivity and other QoL settings
+- Modified almost all weapon animations and weapon code to flow more smoothly
+- Specifically for the shotgun, implemented a shell-accurate reload based on how many shells the player needed to reload
+    --> For example, the default shotgun always reloaded 4 shells, even if the player only fired one of four shells from the gun.
+        Now, the sound, animation, and timings of the shotgun reload are accurate to the number of shells the player fired.
+- Movement and AI navigation improvements on slippery slope terrain. Made movement feel much more smooth and responsive.
+- Added UI elements and audio cues indicating when waves of zombies were spawning and what wave the player was on
+- General bug fixes and minor improvements all around
