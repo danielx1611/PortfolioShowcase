@@ -21,13 +21,23 @@ namespace cowsins
 
         public override void Start()
         {
+            // Initialize health pickup variables
             stats = FindObjectOfType<PlayerStats>();
             image.sprite = healthIcon;
+
+            // Show price to buy health pickup based on cost assigned to pickup
             costDisplay.text = "$ " + cost.ToString();
+
+            // Remove old parent graphic and add new health pickup graphic
             Destroy(graphics.transform.GetChild(0).gameObject);
             Instantiate(healthGraphics, graphics);
+
+            // Do the normal pickeable start methods
             base.Start();
         }
+
+        // If player can buy pickup, heal the player and subtract the gold cost from
+        // the player's gold count. Then destroy the pickup after creating a respawner.
         public override void Interact()
         {
             if (cost > 0)
@@ -41,6 +51,7 @@ namespace cowsins
                 }
             } else if (cost == 0)
             {
+                // The pickup is free, just heal the player and continue
                 stats.Heal(healAmount);
             }
         }
