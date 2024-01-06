@@ -116,19 +116,25 @@ public class TroopPosition : MonoBehaviour
     {
         if (!isOccupied)
         {
+             // Set current troop to the troop controlled by the game manager, and clear any movement circles nearby
             currentTroop = gm.currentTroop;
             currentTroop.ClearMovementOptions(currentTroop.maxTravelDistance, currentTroop.posX, currentTroop.posY);
+
+            // Set the troop's current troop position to be empty and unoccupy the area
             pg.grid[currentTroop.posX].row[currentTroop.posY].setCurrentTroop(null);
             pg.grid[currentTroop.posX].row[currentTroop.posY].unoccupy();
 
+            // Update the troop's position to this troop position's location
             currentTroop.posX = posX;
             currentTroop.posY = posY;
+
+            // Phyiscally move the troop game object to this location and occupy this troop position
             currentTroop.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             occupy();
         }
         else
         {
-            // Debug.Log("Red circle");
+            // Clear attack options and attack the target
             gm.currentTroop.ClearAttackOptions(gm.currentTroop.maxTravelDistance, gm.currentTroop.posX, gm.currentTroop.posY);
             currentTroop.TakeDamage(gm.currentTroop.damage);
         }
