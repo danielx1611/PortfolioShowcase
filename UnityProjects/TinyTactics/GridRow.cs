@@ -4,17 +4,6 @@ using UnityEngine;
 
 public class GridRow : MonoBehaviour
 {
+    // Get a public reference to the row of gridspaces this instance represents
     public TroopPosition[] row;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
