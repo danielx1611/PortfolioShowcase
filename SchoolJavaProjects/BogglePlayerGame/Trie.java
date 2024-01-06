@@ -1,7 +1,7 @@
 /*
 
-Authors (group members): Daniel Acosta, Luka Miodrag Starcevic, Jon Ayuco
-Email addresses of group members: dacosta2022@my.fit.edu ; lstarcevic2022@my.fit.edu ; jayuco2022@my.fit.edu
+Authors (group members): Daniel Acosta, Luka Miodrag Starcevic
+Email addresses of group members: dacosta2022@my.fit.edu ; lstarcevic2022@my.fit.edu
 Group name: Better than C.A.M.E.R.O.N.
 
 Course: CSE2010
