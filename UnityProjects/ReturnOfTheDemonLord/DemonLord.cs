@@ -26,11 +26,14 @@ public class DemonLord : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // Assign references
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
-        m_delayTilNextAttackTimer = m_delayTilNextAttack;
         gameManager = FindObjectOfType<GameManager>();
         partSys = GetComponentInChildren<ParticleSystem>();
+
+        // Set timer to starting timer value
+        m_delayTilNextAttackTimer = m_delayTilNextAttack;
     }
 
     // Update is called once per frame
@@ -38,6 +41,7 @@ public class DemonLord : MonoBehaviour
     {
         if (gameOver)
         {
+            // Do nothing, game is over
             return;
         }
 
@@ -46,32 +50,29 @@ public class DemonLord : MonoBehaviour
             m_delayTilNextAttackTimer -= Time.deltaTime;
             if (m_delayTilNextAttackTimer <= 0)
             {
+                // Countdown time until player boss can attack again
                 m_isAttackDelayed = false;
                 m_delayTilNextAttackTimer = m_delayTilNextAttack;
                 m_isAttacking = false;
             }
         }
 
+        // Get user input on x axis to move forward
         float inputX = Input.GetAxisRaw("Horizontal");
-
-        /*// Swap direction of sprite depending on walk direction
-        if (!m_isAttacking)
-        {
-            if (inputX > 0)
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-        }*/
 
         //Attack
         if (Input.GetMouseButtonDown(0) && !m_isAttackDelayed)
         {
+            // Initiate attack sequence
             m_isAttacking = true;
             m_isAttackDelayed = true;
             m_animator.SetTrigger("Attack");
+
+            // Spawn sound block to play boss attack sound
             Instantiate(bossAttack, transform.position, transform.rotation);
         }
 
+        // Stop moving if attacking
         if (m_isAttacking)
         {
             m_body2d.velocity = new Vector2(0, 0);
@@ -80,34 +81,17 @@ public class DemonLord : MonoBehaviour
         // Move
         if (!m_isAttacking && inputX > 0)
         {
+            // Move if not attacking and player is moving forward
             m_body2d.velocity = new Vector2(inputX, m_body2d.velocity.y).normalized * speed;
         }
     }
-
-    /*public void TakeDamage(int damage)
-    {
-        if (!m_isDead && !m_isBlocking)
-        {
-            gameManager.playerHealth -= damage;
-            if (gameManager.playerHealth <= 0)
-            {
-                m_animator.SetTrigger("Death");
-                m_isDead = true;
-            }
-            else
-            {
-                m_animator.SetTrigger("Hurt");
-            }
-        }
-    }*/
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
         if (!colliderList.Contains(collider.gameObject) && collider.tag == "Enemy")
         {
+            // Add enemies to list of Area of Effect attack targets when in range of player boss
             colliderList.Add(collider.gameObject);
-            // Debug.Log("Added " + collider.gameObject.name);
-            // Debug.Log("GameObjects in list: " + colliderList.Count);
         }
     }
 
@@ -117,17 +101,19 @@ public class DemonLord : MonoBehaviour
         {
             if (colliderList.Contains(collider.gameObject))
             {
+                // Remove enemies from list of Area of Effect attack targets when no longer in range of player boss
                 colliderList.Remove(collider.gameObject);
-                // Debug.Log("Removed " + collider.gameObject.name);
-                // Debug.Log("GameObjects in list: " + colliderList.Count);
             }
         }
     }
 
     public void DamageAllEnemiesInRange()
     {
+        // Reset particle effect and play it to show attack has an Area of Effect
         partSys.time = 0f;
         partSys.Play();
+
+        // Damage all of the enemies in range of the player boss
         foreach (GameObject enemy in colliderList.ToList())
         {
             AIKnight enemyScript = enemy.GetComponent<AIKnight>();
