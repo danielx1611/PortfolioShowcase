@@ -10,18 +10,6 @@ public class FadePanel : MonoBehaviour
     public Animator fadePanelAnim;
     public string nextLevelName;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void StartSceneTransition()
     {
         StartCoroutine(LoadNextLevel());
@@ -31,6 +19,8 @@ public class FadePanel : MonoBehaviour
     {
         fadePanelAnim.SetTrigger("fadeOut");
         yield return new WaitForSeconds(1.25f);
+
+        // Allow fade out transition to finish, then load next scene
         SceneManager.LoadScene(nextLevelName);
     }
 }
