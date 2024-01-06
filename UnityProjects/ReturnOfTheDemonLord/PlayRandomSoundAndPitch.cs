@@ -12,16 +12,11 @@ public class PlayRandomSoundAndPitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Get a random clip, then randomize the pitch of the clip and play it from the audio source
         AudioClip clip = clips[Random.Range(0, clips.Length)];
         audioSource = GetComponent<AudioSource>();
         audioSource.pitch = Random.Range(minPitch, maxPitch);
         audioSource.clip = clip;
         audioSource.Play();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
