@@ -15,10 +15,14 @@ public class PlayGrid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Assign references
         gm = FindObjectOfType<GameManager>();
+
+        // Spawn left and right bosses on screen
         gm.SpawnLeftBoss();
         gm.SpawnRightBoss();
 
+        // Find grid positions and populate their neighbor lists to form a graph
         for (int i = 0; i < grid.Length; i++)
         {
             for (int j = 0; j < grid[0].row.Length; j++)
@@ -32,9 +36,11 @@ public class PlayGrid : MonoBehaviour
             }
         }
 
+        // Spawn enemies on grid after grid is built
         SpawnEnemies();
     }
 
+    // Check up, down, left, and right tiles to see if they are possible neighbors of the current graph node
     void FindNeighbors(TroopPosition troop, int iPos, int jPos)
     {
         if (jPos - 1 >= 0 && jPos - 1 < grid[iPos].row.Length && grid[iPos].row[jPos - 1] != null)
@@ -49,6 +55,15 @@ public class PlayGrid : MonoBehaviour
 
     void SpawnEnemies()
     {
+        /*
+
+        For each spawn sequence:
+        Store the position the troop will be spawned at, then spawn the troop there.
+        Store the spawned troop in the grid tile, and set the grid tile team to "right" (enemy team)
+        Tell the spawned troop what position it is at, then add the troop to the rightTroops list (enemy troop list)
+
+        */
+    
         TroopPosition tPos = grid[0].row[6];
         tPos.occupy();
         Troop spawned = Instantiate(soldierTroop, new Vector3(tPos.transform.position.x, tPos.transform.position.y, tPos.transform.position.z), Quaternion.identity);
