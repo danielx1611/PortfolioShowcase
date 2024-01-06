@@ -17,6 +17,7 @@ public class BossInteraction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Assign references
         player = FindObjectOfType<HeroKnight>();
         bgMusic = FindObjectOfType<PersistMusic>();
     }
@@ -28,6 +29,7 @@ public class BossInteraction : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                // If player interacts with boss chest, play death sequence and stop music
                 Instantiate(deathEffect, transform.position + offset, transform.rotation);
                 GetComponent<AudioSource>().Play();
                 player.CustomDeath();
@@ -40,6 +42,7 @@ public class BossInteraction : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            // Make interact text visible to player when in distance of chest
             interactText.gameObject.SetActive(true);
             canInteract = true;
         }
@@ -49,6 +52,7 @@ public class BossInteraction : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            // Make interact text invisible to player when no longer in distance of chest
             interactText.gameObject.SetActive(false);
             canInteract = false;
         }
