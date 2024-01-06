@@ -12,6 +12,7 @@ public class Destroyer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Make this object vanish after specified amount of time
         Invoke("Vanish", lifetime);
     }
 
