@@ -41,46 +41,59 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Reset all Game Manager states
         currentTroop = null;
         isTroopSelected = false;
         isInPlacementPhase = true;
         gameWon = false;
 
+        // Reset troop counts
         maxTroopCount = 6;
         placedTroopCount = 0;
         enemyTroopCount = maxTroopCount;
         friendlyTroopCount = maxTroopCount;
 
+        // Create new priority queue for attack order and lists for friendly and enemy troops
         troopPQ = new PriorityQueue<Troop>();
         leftTroops = new Troop[maxTroopCount];
         rightTroops = new Troop[maxTroopCount];
 
+        // Set default choices for friendly/enemy boss selection
         leftBossSelectIndex = 1;
         rightBossSelectIndex = 2;
 
+        // Store the position of the bosses for later spawning
         leftPos = new Vector3(leftBoss.transform.position.x, leftBoss.transform.position.y, leftBoss.transform.position.z);
         rightPos = new Vector3(rightBoss.transform.position.x, rightBoss.transform.position.y, rightBoss.transform.position.z);
     }
 
     public void UpdateLeftBossPreview(int change)
     {
+        
         if (leftBossSelectIndex == bossList.Length - 1)
         {
+            // Boss index must have been decremented, so increment has to be available
             leftBossInc.interactable = true;
         }
         else if (leftBossSelectIndex == 0)
         {
+            // Boss index must have been incremented, so decrement has to be available
             leftBossDec.interactable = true;
         }
+
+        // Update boss index then spawn new boss from boss list
         leftBossSelectIndex += change;
         Destroy(leftBoss);
         leftBoss = Instantiate(bossList[leftBossSelectIndex], leftPos, Quaternion.identity);
         leftBoss.transform.localScale = new Vector3(-3, 3, 3);
+
         if (leftBossSelectIndex == bossList.Length - 1)
         {
+            // Rightmost boss option selected, boss index can no longer be incremented
             leftBossInc.interactable = false;
         } else if (leftBossSelectIndex == 0)
         {
+            // Leftmost boss option selected, boss index can no longer be decremented
             leftBossDec.interactable = false;
         }
     }
@@ -89,22 +102,29 @@ public class GameManager : MonoBehaviour
     {
         if (rightBossSelectIndex == bossList.Length - 1)
         {
+            // Boss index must have been decremented, so increment has to be available
             rightBossInc.interactable = true;
         }
         else if (rightBossSelectIndex == 0)
         {
+            // Boss index must have been incremented, so decrement has to be available
             rightBossDec.interactable = true;
         }
+
+        // Update boss index then spawn new boss from boss list
         rightBossSelectIndex += change;
         Destroy(rightBoss);
         rightBoss = Instantiate(bossList[rightBossSelectIndex], rightPos, Quaternion.identity);
         rightBoss.transform.localScale = new Vector3(3, 3, 3);
+
         if (rightBossSelectIndex == bossList.Length - 1)
         {
+            // Rightmost boss option selected, boss index can no longer be incremented
             rightBossInc.interactable = false;
         }
         else if (rightBossSelectIndex == 0)
         {
+            // Leftmost boss option selected, boss index can no longer be decremented
             rightBossDec.interactable = false;
         }
     }
@@ -121,6 +141,7 @@ public class GameManager : MonoBehaviour
         rightBoss.transform.localScale = new Vector3(3, 3, 3);
     }
 
+    // Alternate entering left and right troops into queue to attempt to make fair ordering of turns in combat
     public void PopulateQueue()
     {
         for (int i = 0; i < maxTroopCount; i++)
@@ -130,11 +151,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Remove defeated enemy from turn list
     public void RemoveElementFromQueue(Troop entry)
     {
         troopPQ.RemoveEntryFromQueue(entry);
     }
 
+    // Debug log the queue for error diagnosing
     public void PrintQueue()
     {
         Debug.Log("Printing pq");
@@ -148,6 +171,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Done printing");
     }
 
+    // Shift to next troop in the queue, returning the frontmost troop to the back of the queue and reinserting it
     public void MoveToNextTroopInQueue()
     {
         PriorityQueue<Troop>.Node currentTroopNode = troopPQ.Dequeue();
@@ -156,6 +180,7 @@ public class GameManager : MonoBehaviour
         isTroopSelected = true;
     }
 
+    // Transition to end game screen
     public void EndGame()
     {
         FadePanel fp = FindObjectOfType<FadePanel>();
@@ -163,6 +188,8 @@ public class GameManager : MonoBehaviour
     }
 }
 
+
+// Custom Priority Queue class implementation for turn based combat system
 public class PriorityQueue<T>
 {
     public class Node
