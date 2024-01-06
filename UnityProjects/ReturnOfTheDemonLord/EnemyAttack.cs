@@ -9,13 +9,8 @@ public class EnemyAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Assign references
         enemyScript = GetComponentInParent<Enemy>();   
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void AttackPlayer()
