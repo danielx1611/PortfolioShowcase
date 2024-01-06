@@ -9,13 +9,8 @@ public class FindWorldCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Get world camera for instantiated world space canvas elements
         canvas = GetComponent<Canvas>();
         canvas.worldCamera = FindObjectOfType<Camera>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
