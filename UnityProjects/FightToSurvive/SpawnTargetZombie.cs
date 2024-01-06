@@ -10,15 +10,11 @@ public class SpawnTargetZombie : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Wait for given time then respawn given zombie asset
         StartCoroutine(SpawnDelay());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Spawn given zombie asset after specified time between spawns
     IEnumerator SpawnDelay()
     {
         yield return new WaitForSeconds(timeBetweenSpawns);
