@@ -29,12 +29,19 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // Assign references
         m_animator = GetComponentInChildren<Animator>();
-        m_animator.speed = 0.5f;
         m_body2d = GetComponent<Rigidbody2D>();
-        timeForAttackTimer = timeForAttack;
         player = FindObjectOfType<HeroKnight>().GetComponent<Transform>();
         playerHK = FindObjectOfType<HeroKnight>();
+
+        // Set animator to half speed for slower animations
+        m_animator.speed = 0.5f;
+
+        // Set attack timer to starting timer value
+        timeForAttackTimer = timeForAttack;
+
+        // Scale enemy relative to specified size, where only x can be negative in order to "flip" the enemy direction
         transform.localScale = new Vector3(sizeScale, Mathf.Abs(sizeScale), Mathf.Abs(sizeScale));
     }
 
@@ -42,19 +49,20 @@ public class Enemy : MonoBehaviour
     void Update()
     {
 
-        // -- Handle movement --
-
+        // If enemy is dead or player is dead, disable collisions and return, as the game is over or the enemy is dead and shouldn't move
         if (m_isDead || playerHK.m_isDead)
         {
             gameObject.GetComponent<Collider2D>().enabled = false;
             return;
         }
 
+        // Countdown to prevent enemy from attacking multiple times at once
         if (m_isAttacking)
         {
             timeForAttackTimer -= Time.deltaTime;
             if (timeForAttackTimer <= 0)
             {
+                // Countdown is done, finish attack
                 timeForAttackTimer = timeForAttack;
                 m_isAttacking = false;
             }
@@ -66,10 +74,13 @@ public class Enemy : MonoBehaviour
         {
             Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
 
+            // Calculate speed towards player
             m_body2d.velocity = new Vector2(directionToPlayer.x, directionToPlayer.y) * m_speed;
 
+            // If in range, attack if not already attacking
             if (Vector2.Distance(player.transform.position, transform.position) < 1f && !m_isAttacking)
             {
+                // Stop moving then attack the player
                 m_body2d.velocity = Vector2.zero;
                 m_animator.SetTrigger("Attack");
                 enemyAttackSource = Instantiate(enemyAttackSound, transform.position, transform.rotation).GetComponent<AudioSource>();
@@ -78,6 +89,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
+            // Player out of range, stop chasing
             m_body2d.velocity = Vector2.zero;
         }
 
@@ -102,6 +114,7 @@ public class Enemy : MonoBehaviour
     {
         if (Vector2.Distance(player.transform.position, transform.position) < 1f)
         {
+            // Player in range of attack, attempt to damage player
             playerHK.TakeDamage(m_damage);
         }
     }
@@ -113,6 +126,7 @@ public class Enemy : MonoBehaviour
         {
             if (m_health <= 0)
             {
+                // Initiate death sequence then destroy the enemy body
                 m_isDead = true;
                 Instantiate(deathEffect, transform.position, transform.rotation);
                 Instantiate(enemyDeathSound, transform.position, transform.rotation);
@@ -120,6 +134,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
+                // Play hurt animation and sound, then stagger next attack timer to allow player to combo the enemy
                 m_animator.SetTrigger("Hurt");
                 Instantiate(enemyHurtSound, transform.position, transform.rotation);
                 timeForAttackTimer = 0.3f;
@@ -127,6 +142,7 @@ public class Enemy : MonoBehaviour
         }
         if (enemyAttackSource != null)
         {
+            // Stop attack sound if enemy gets hit, as attack animation stops too
             enemyAttackSource.Stop();
         }
     }
