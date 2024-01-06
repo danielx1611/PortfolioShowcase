@@ -32,6 +32,7 @@ public class Troop : MonoBehaviour
 
     public virtual void OnMouseDown()
     {
+        // Enable turn control options for current troop if it is a player controlled troop, and it is this troops turn
         if (team == "left")
         {
             if (this == gm.currentTroop)
