@@ -7,23 +7,13 @@ public class SceneTransitioner : MonoBehaviour
 {
     public Animator fadePanel;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Function to trigger scene transition sequence
     public void StartFadeIn(int sceneToLoad)
     {
         StartCoroutine(TriggerFadeIn(sceneToLoad));
     }
 
+    // Set screen to fade to black, then wait for 1.5 seconds before switching scenes
     public IEnumerator TriggerFadeIn(int sceneToLoad)
     {
         fadePanel.SetTrigger("fadeIn");
