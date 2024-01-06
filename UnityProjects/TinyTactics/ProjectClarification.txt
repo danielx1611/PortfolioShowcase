@@ -1,0 +1,24 @@
+This code was developed in roughly two and a half days for a game jam project held by Noa and Liam Calice for their GameDevRocket course.
+Game jam theme: Tiny Armies
+
+------IMPORTANT------
+
+This project relies on art and sounds not produced by the code author.
+
+Art sources can be found at the following unity asset store links:
+https://assetstore.unity.com/packages/2d/environments/tiles-and-hexes-2d-painted-terrain-samples-191945
+https://assetstore.unity.com/publishers/67467
+
+Sound sources were found at freesound.org
+
+------IMPORTANT------
+
+The goal is for the player to outsmart the enemy AI in a strategic turn based battle. Using small clusters of tiny soldiers,
+the player must plan ahead and form a strategy to beat back the enemy soldiers and emerge victorious.
+
+Originally, the game was planned to have bosses for each playable faction that had a unique ability, but time ran out before
+more progress could be made. Additionally, there was not enough time to implement sound effects into the game. A large portion
+of time was spent implementing the combat system and the enemy AI system to be as bug free as possible.
+
+There were two troop types available when the game jam closed, but the faction system is working as expected. Selecting a given
+boss in the team select screen will accurately update all troops on the board to be from the correct faction.
