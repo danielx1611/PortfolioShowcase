@@ -10,6 +10,7 @@ public class ShowAndHide : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Show/hide controls panel for player convenience
         if (Input.GetKeyDown(KeyCode.Q))
         {
             panel.SetActive(!panel.activeSelf);
