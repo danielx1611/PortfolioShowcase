@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
+    // Transition to game level from main menu
     public void Play()
     {
         SceneManager.LoadScene("FightToSurvive");
