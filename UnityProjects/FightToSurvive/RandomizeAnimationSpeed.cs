@@ -13,13 +13,9 @@ public class RandomizeAnimationSpeed : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Get animator component and set the animation speed
+        // to random value between minSpeed and maxSpeed
         anim = GetComponent<Animator>();
         anim.speed = Random.Range(minSpeed, maxSpeed);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
