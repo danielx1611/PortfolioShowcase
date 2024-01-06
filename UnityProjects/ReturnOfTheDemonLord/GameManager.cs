@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        // Get one or both instances of the GameManager script, then remove duplicate if needed
         GameManager[] objs = GameObject.FindObjectsOfType<GameManager>();
         if (objs.Length > 1)
         {
@@ -21,18 +22,15 @@ public class GameManager : MonoBehaviour
                 Destroy(objs[0]);
             }
         }
-        DontDestroyOnLoad(this.gameObject);
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        // Don't destroy this object on scene load
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Update player health bar to reflect player's current health
         Slider healthBar = FindObjectOfType<Slider>();
         if (healthBar != null)
         {
