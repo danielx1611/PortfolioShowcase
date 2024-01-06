@@ -15,12 +15,7 @@ public class Destroyer : MonoBehaviour
         Invoke("Vanish", lifetime);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Spawn vanishing effect and destroy given object for nice visual removal of actor
     void Vanish()
     {
         if (vanishEffect != null)
