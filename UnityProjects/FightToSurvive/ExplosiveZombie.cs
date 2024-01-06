@@ -12,6 +12,8 @@ public class ExplosiveZombie : Zombie
     public override void Update()
     {
         base.Update();
+
+        // If in range of target, explode the zombie
         if (Vector3.Distance(transform.position, target.position) < explosionDistance && !isDead)
         {
             barrel.Die();
