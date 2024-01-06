@@ -12,15 +12,11 @@ public class AmmoDropWaitTime : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Spawn ammo pickeable after specified amount of time for a "respawning" effect
         Invoke("SpawnAmmoPickeable", waitTime);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Spawn ammo pickeable item to replenish player ammo
     void SpawnAmmoPickeable()
     {
         Instantiate(pickeable, transform.position, transform.rotation);
