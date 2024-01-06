@@ -21,28 +21,43 @@ public class TroopPosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Assign references
         gm = FindObjectOfType<GameManager>();
         pg = FindObjectOfType<PlayGrid>();
         tp = FindObjectOfType<TroopPlacement>();
+
+        // Reset troop position data and hide from view
         isVisited = false;
         gameObject.SetActive(false);
     }
 
     public void OnMouseDown()
     {
+        // Placement phase mechanics
         if (gm.isInPlacementPhase)
         {
+            // Place troop on selected troop position and update 
             TroopPosition tPos = pg.grid[posX].row[posY];
             tPos.occupy();
             Troop spawned = Instantiate(gm.currentTroop, new Vector3(tPos.transform.position.x, tPos.transform.position.y, tPos.transform.position.z), Quaternion.identity);
             tPos.setCurrentTroop(spawned);
+
+            // Add newly spawned troop to left troop list
             gm.leftTroops[gm.placedTroopCount] = spawned;
+
+            // Update spawned troop data to match placed position, then make it face rightwards
             tPos.getCurrentTroop().posX = posX;
             tPos.getCurrentTroop().posY = posY;
             tPos.getCurrentTroop().setRightwardOrientation();
+
+            // Hide all of the placement locations
             tp.HideAllLocations();
+
+            // Increment the number of placed troops and decrease the amount of troops left to place
             gm.placedTroopCount++;
             tp.DecreaseTroopsToPlace();
+
+            // If all troops have been placed, stop placement sequence and begin populating the queue
             if (gm.placedTroopCount == 6)
             {
                 tp.DisableTroopPlacementButtons();
@@ -52,7 +67,6 @@ public class TroopPosition : MonoBehaviour
         {
             if (!isOccupied)
             {
-                // Debug.Log("White circle");
                 currentTroop = gm.currentTroop;
                 currentTroop.ClearMovementOptions(currentTroop.maxTravelDistance, currentTroop.posX, currentTroop.posY);
                 currentTroop.ClearAttackOptions(currentTroop.maxTravelDistance, currentTroop.posX, currentTroop.posY);
