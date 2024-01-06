@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SoldierTroop : Troop
 {
+    // Uses basic troop commands, all commands refer to base behavior
 
     public override void OnMouseDown()
     {
@@ -91,6 +92,8 @@ public class SoldierTroop : Troop
     {
         base.RunAIDecision();
     }
+
+    // AI Sequence commented out, same as the base AI Sequence, left here for ease of modification
 
     /*IEnumerator runAISequence()
     {
