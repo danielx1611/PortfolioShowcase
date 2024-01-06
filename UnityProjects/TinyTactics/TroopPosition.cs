@@ -63,40 +63,44 @@ public class TroopPosition : MonoBehaviour
                 tp.DisableTroopPlacementButtons();
                 gm.PopulateQueue();
             }
-        } else
+        } else // No longer in placement phase
         {
             if (!isOccupied)
             {
+                // Set current troop to the troop controlled by the game manager, and clear any movement or attack circles nearby
                 currentTroop = gm.currentTroop;
                 currentTroop.ClearMovementOptions(currentTroop.maxTravelDistance, currentTroop.posX, currentTroop.posY);
                 currentTroop.ClearAttackOptions(currentTroop.maxTravelDistance, currentTroop.posX, currentTroop.posY);
 
+                // Set the troop's current troop position to be empty and unoccupy the area
                 pg.grid[currentTroop.posX].row[currentTroop.posY].setCurrentTroop(null);
                 pg.grid[currentTroop.posX].row[currentTroop.posY].unoccupy();
 
+                // Update the troop's position to this troop position's location
                 currentTroop.posX = posX;
                 currentTroop.posY = posY;
+
+                // Phyiscally move the troop game object to this location and occupy this troop position
                 currentTroop.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
                 occupy();
+
+                // Disable move button so that player cannot keep moving on this turn
                 currentTroop.DisableMoveButton();
             }
             else
             {
-                // Debug.Log("Red circle");
+                // Clear attack options and attack the target
                 gm.currentTroop.ClearAttackOptions(gm.currentTroop.maxTravelDistance, gm.currentTroop.posX, gm.currentTroop.posY);
                 currentTroop.TakeDamage(gm.currentTroop.damage);
+
+                // Disable the attack button so the troop can no longer attack for this turn
                 gm.currentTroop.DisableAttackButton();
             }
         }
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Getter and setter methods for various troop position attributes
     public void addNeighbor(TroopPosition neighbor) { neighboringTiles.Add(neighbor); }
     public List<TroopPosition> getNeighbors() { return neighboringTiles; }
     public void visit() { isVisited = true; }
