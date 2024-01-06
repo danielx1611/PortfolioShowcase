@@ -16,11 +16,13 @@ public class TroopMovementQueueButton : MonoBehaviour
 
     GameObject spawnedLocationIndicator;
 
+    // Spawn blue ring on grid indicating which troop this queue button represents
     public void ShowLocationIcon()
     {
         spawnedLocationIndicator = Instantiate(locationIndicator, troop.transform.position, troop.transform.rotation, troop.transform);
     }
 
+    // Hide blue ring on grid
     public void HideLocationIcon()
     {
         Destroy(spawnedLocationIndicator);
