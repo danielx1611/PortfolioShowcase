@@ -5,6 +5,8 @@ Further descriptions for each project can be read in text files labeled "Project
 
 To see the unity projects running in real time, please visit their respective pages:
 
+https://rocketblaster05.itch.io/sinnerjeez
+
 https://rocketblaster05.itch.io/tiny-tactics
 
 https://rocketblaster05.itch.io/return-of-the-demon-lord
