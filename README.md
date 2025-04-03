@@ -1,4 +1,4 @@
-# Portfolio Has Been Moved
+# New Portfolio In Development
 Please visit: [My Portfolio Site](https://danielx1611.github.io/portfolio/)
 
 
