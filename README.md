@@ -1,3 +1,6 @@
+# Portfolio Has Been Moved
+Please visit: [](https://danielx1611.github.io/portfolio/)
+
 This is a portfolio of various Java and C# related projects completed in school or for self-practice.
 
 There are three school projects and some Unity C# project files to show off programming skills and learning capabilities. 
