@@ -1,4 +1,4 @@
-# New Portfolio In Development
+# New Portfolio Available!
 Please visit: [My Portfolio Site](https://danielx1611.github.io/portfolio/)
 
 
